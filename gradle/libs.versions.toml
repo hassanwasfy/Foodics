@@ -14,6 +14,7 @@ ktor = "3.0.2"
 koin-bom = "4.1.0-Beta1"
 ksp = "2.0.20-1.0.25"
 room_version = "2.6.1"
+coil_version = "3.0.4"
 navigationRuntimeKtx = "2.8.5"
 navigationCompose = "2.8.5"
 
@@ -44,6 +45,7 @@ koin-compiler = { module = "io.insert-koin:koin-ksp-compiler" }
 room-runtime = { module = "androidx.room:room-runtime",version.ref = "room_version" }
 room-compiler = { module = "androidx.room:room-compiler",version.ref = "room_version" }
 room-ktx = { module = "androidx.room:room-ktx" ,version.ref = "room_version"}
+coil-compose = { module = "io.coil-kt.coil3:coil-compose" ,version.ref = "coil_version"}
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 
