@@ -4,11 +4,13 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp.plugin)
+    alias(libs.plugins.kotlin.serialize)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
     namespace = "com.hassanwasfy.foodics"
-    compileSdk = 34
+    compileSdk = 35
 
     val apiKey: String by lazy {
         val properties = Properties()
@@ -53,6 +55,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -105,5 +108,8 @@ dependencies {
 
     //coil
     implementation(libs.coil.compose)
+
+    //serialization
+    implementation(libs.kotlin.serial)
 
 }

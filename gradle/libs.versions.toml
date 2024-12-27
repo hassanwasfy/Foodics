@@ -11,12 +11,16 @@ lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 composeBom = "2024.12.01"
 ktor = "3.0.2"
+koin_compiler = "1.1.0"
 koin-bom = "4.1.0-Beta1"
-ksp = "2.0.20-1.0.25"
-room_version = "2.6.1"
+ksp = "2.1.20-Beta1-1.0.29"
+serialize = "2.1.0"
+room_version = "2.5.2"
 coil_version = "3.0.4"
 navigationRuntimeKtx = "2.8.5"
 navigationCompose = "2.8.5"
+json_serial = "1.7.3"
+kotlin_compose = "2.1.20-Beta1"
 
 
 [libraries]
@@ -43,7 +47,7 @@ ktor-client-content = { module = "io.ktor:ktor-client-content-negotiation", vers
 ktor-client-serialize = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
 koin-core = { module = "io.insert-koin:koin-core" }
-koin-compiler = { module = "io.insert-koin:koin-ksp-compiler" }
+koin-compiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin_compiler" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin-bom" }
 koin-android-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-bom" }
 room-runtime = { module = "androidx.room:room-runtime",version.ref = "room_version" }
@@ -52,11 +56,11 @@ room-ktx = { module = "androidx.room:room-ktx" ,version.ref = "room_version"}
 coil-compose = { module = "io.coil-kt.coil3:coil-compose" ,version.ref = "coil_version"}
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+kotlin-serial = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "json_serial" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp-plugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-
-
-
+kotlin-serialize = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialize" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin_compose" }
