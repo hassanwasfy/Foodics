@@ -1,12 +1,25 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp.plugin)
+    alias(libs.plugins.kotlin.serialize)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
     namespace = "com.hassanwasfy.foodics"
-    compileSdk = 34
+    compileSdk = 35
+
+    val apiKey: String by lazy {
+        val properties = Properties()
+        val localPropertiesFile = rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            properties.load(localPropertiesFile.inputStream())
+        }
+        properties.getProperty("API_KEY") as String
+    }
 
     defaultConfig {
         applicationId = "com.hassanwasfy.foodics"
@@ -19,6 +32,9 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        buildConfigField("String", "API_KEY", "\"$apiKey\"")
+
     }
 
     buildTypes {
@@ -39,6 +55,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -74,10 +91,14 @@ dependencies {
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.android)
     implementation(libs.ktor.client.logging)
+    implementation(libs.ktor.client.content)
+    implementation(libs.ktor.client.serialize)
 
     //koin
     implementation(project.dependencies.platform(libs.koin.bom))
     implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.android.compose)
     ksp(libs.koin.compiler)
 
     //room
@@ -87,5 +108,8 @@ dependencies {
 
     //coil
     implementation(libs.coil.compose)
+
+    //serialization
+    implementation(libs.kotlin.serial)
 
 }
