@@ -37,9 +37,9 @@ class ApiService(private val client: HttpClient) {
         return when (e) {
             is ClientRequestException -> Result.failure(FoodicsError.ClientError(e.response.status.value.toString()))
             is ServerResponseException -> Result.failure(FoodicsError.ServerError)
-            is SerializationException -> Result.failure(FoodicsError.UnexpectedError)
+            is SerializationException -> Result.failure(FoodicsError.UnexpectedError(e.message.toString()))
             is IOException -> Result.failure(FoodicsError.NetworkError)
-            else -> Result.failure(FoodicsError.UnexpectedError)
+            else -> Result.failure(FoodicsError.UnexpectedError(e.message.toString()))
         }
     }
 }
