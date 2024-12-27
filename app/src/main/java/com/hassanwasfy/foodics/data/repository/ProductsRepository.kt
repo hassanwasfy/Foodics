@@ -5,7 +5,7 @@ import com.hassanwasfy.foodics.data.local.mapper.toDomainModel
 import com.hassanwasfy.foodics.data.local.mapper.toProductEntity
 import com.hassanwasfy.foodics.data.models.local.CategoryEntity
 import com.hassanwasfy.foodics.data.service.ApiService
-import com.hassanwasfy.foodics.ui.models.Product
+import com.hassanwasfy.foodics.ui.models.domain.Product
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
