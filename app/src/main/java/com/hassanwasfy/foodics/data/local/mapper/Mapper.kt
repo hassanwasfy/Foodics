@@ -3,8 +3,8 @@ package com.hassanwasfy.foodics.data.local.mapper
 import com.hassanwasfy.foodics.data.models.local.CategoryEntity
 import com.hassanwasfy.foodics.data.models.local.ProductEntity
 import com.hassanwasfy.foodics.data.models.remote.ProductRemote
-import com.hassanwasfy.foodics.ui.models.Category
-import com.hassanwasfy.foodics.ui.models.Product
+import com.hassanwasfy.foodics.ui.models.domain.Category
+import com.hassanwasfy.foodics.ui.models.domain.Product
 
 fun ProductRemote.toProductEntity(): ProductEntity {
     return ProductEntity(
