@@ -6,12 +6,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavHostController
+import com.hassanwasfy.foodics.LocalNavController
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-
-val LocalNavController = compositionLocalOf<NavHostController> { error("No NavController found!") }
-
 
 @Composable
 fun <T> NavigationHandler(

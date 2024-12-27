@@ -4,11 +4,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
-import com.hassanwasfy.foodics.ui.navigation.FoodicsApp
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.hassanwasfy.foodics.ui.composables.FoodicsScaffold
 import com.hassanwasfy.foodics.ui.theme.FoodicsTheme
+
+val LocalNavController = compositionLocalOf<NavHostController> { error("No NavController found!") }
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,8 +20,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FoodicsTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    FoodicsApp(innerPadding)
+                val navController = rememberNavController()
+                CompositionLocalProvider(LocalNavController provides navController) {
+                    FoodicsScaffold(navController)
                 }
             }
         }
