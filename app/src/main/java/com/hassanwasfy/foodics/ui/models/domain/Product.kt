@@ -1,4 +1,4 @@
-package com.hassanwasfy.foodics.ui.models
+package com.hassanwasfy.foodics.ui.models.domain
 
 data class Product(
     val id: String,

@@ -16,24 +16,22 @@ import java.util.concurrent.TimeoutException
 
 abstract class BaseViewModel<UiState : BaseUiState, UiEffect>(state: UiState) : ViewModel() {
 
-    protected val iState = MutableStateFlow(state)
-    val state = iState.asStateFlow()
+    protected val _state = MutableStateFlow(state)
+    val state = _state.asStateFlow()
 
-    private val iEffect = MutableSharedFlow<UiEffect>()
-    val effect = iEffect.asSharedFlow()
+    private val _effect = MutableSharedFlow<UiEffect>()
+    val effect = _effect.asSharedFlow()
 
     fun <T> tryToExecute(
-        onSuccess: (T) -> Unit = {},
+        onSuccess: suspend (T) -> Unit = {},
         onError: (errorMsg: String) -> Unit,
         dispatcher: CoroutineDispatcher = Dispatchers.IO,
         execute: suspend () -> T,
     ) {
         viewModelScope.launch(dispatcher) {
             try {
-                withTimeout(UiConstants.TIME_OUT) {
-                    val result = execute()
-                    onSuccess(result)
-                }
+                val result = execute()
+                onSuccess(result)
             } catch (e: TimeoutCancellationException) {
                 onError(e.message.toString())
             } catch (e: NoSuchElementException) {
@@ -46,7 +44,7 @@ abstract class BaseViewModel<UiState : BaseUiState, UiEffect>(state: UiState) : 
 
     protected fun sendUiEffect(uiEffect: UiEffect) {
         viewModelScope.launch(Dispatchers.IO) {
-            iEffect.emit(uiEffect)
+            _effect.emit(uiEffect)
         }
     }
 }
