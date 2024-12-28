@@ -9,6 +9,8 @@ object Paddings {
     val DP_8 = 8.dp
     val DP_12 = 12.dp
     val DP_16 = 16.dp
+    val DP_32 = 32.dp
+    val DP_64 = 64.dp
     val SEARCH_VIEW_HEIGHT = 48.dp
     val TOP_BAR_HEIGHT = 64.dp
 }
