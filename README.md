@@ -104,11 +104,16 @@ The app contains 4 main screens:
 
 ## Screenshots
 - **Product List**
-![Product List](screenshots/Screenshot_20241228_081026.png)
-![Product List](screenshots/Screenshot_20241228_081110.png)
-![Product List](screenshots/Screenshot_20241228_081157.png)
-![Product List](screenshots/Screenshot_20241228_081026.png)
-![Product List](screenshots/Screenshot_20241228_081254.png)
+<div style="display: flex; justify-content: space-around; align-items: center;">
+
+<img src="screenshots/Screenshot_20241228_081026.png" alt="Product List" width="200" />
+<img src="screenshots/Screenshot_20241228_081110.png" alt="Product List" width="200" />
+<img src="screenshots/Screenshot_20241228_081157.png" alt="Product List" width="200" />
+<img src="screenshots/Screenshot_20241228_081026.png" alt="Product List" width="200" />
+<img src="screenshots/Screenshot_20241228_081254.png" alt="Product List" width="200" />
+
+</div>
+
 
 ---
 
