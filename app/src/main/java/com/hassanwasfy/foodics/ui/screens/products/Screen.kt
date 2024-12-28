@@ -229,14 +229,34 @@ fun ScreenProductsContent(state: ProductsUiState, interaction: ProductsInterActi
                     .weight(1f)
                     .background(Gray_Background)
             ) {
+                val noFilterData = state.filteredList.isEmpty()
 
-                FoodicsAnimation(state.filteredList.isEmpty()) {
+                FoodicsAnimation(noFilterData && state.searchValue.isEmpty()) {
                     FoodicsProductList(state.productsList) { id ->
                         interaction.onCLickProduct(id)
                     }
                 }
 
-                FoodicsAnimation(state.filteredList.isNotEmpty()) {
+                FoodicsAnimation(noFilterData && state.searchValue.isNotEmpty()) {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Icon(
+                            painterResource(R.drawable.error),
+                            "",
+                            tint = Color.Black
+                        )
+                        Text(
+                            "No data to show",
+                            modifier = Modifier.padding(end = Paddings.DP_4),
+                            color = Color.Black
+                        )
+                    }
+                }
+
+                FoodicsAnimation(!noFilterData && state.searchValue.isNotEmpty()) {
                     FoodicsProductList(state.filteredList) { id ->
                         interaction.onCLickProduct(id)
                     }
