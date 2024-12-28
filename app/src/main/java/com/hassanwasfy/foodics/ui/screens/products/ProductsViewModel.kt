@@ -52,6 +52,11 @@ class ProductsViewModel(private val repository: ProductsRepository) :
                     currentState.productsList.filter { product ->
                         product.name.contains(query, ignoreCase = true)
                     }
+                },
+                currentCategory = if (query.isEmpty()) {
+                    "0"
+                } else {
+                    currentState.currentCategory
                 }
             )
         }
@@ -79,6 +84,18 @@ class ProductsViewModel(private val repository: ProductsRepository) :
             }
         }
 
+        val updatedFilteredList = if (state.value.filteredList.isNotEmpty()) {
+            state.value.filteredList.map { product ->
+                if (product.id == productId) {
+                    product.copy(count = product.count + 1)
+                } else {
+                    product
+                }
+            }
+        } else {
+            emptyList()
+        }
+
         val updatedOrderList = state.value.orderList.toMutableList().apply {
             val orderItem = find { it.id == productId }
             if (orderItem != null) {
@@ -90,30 +107,31 @@ class ProductsViewModel(private val repository: ProductsRepository) :
             }
         }
 
-        var amount = state.value.totalAmount
-        updatedProductsList.forEach {
-            amount += it.price
-        }
+        val totalAmount = updatedOrderList.sumOf { item -> item.count * item.price }
 
         val decimalFormat = DecimalFormat("#.##")
-        val formatted = decimalFormat.format(amount).toDouble()
+        val formattedAmount = decimalFormat.format(totalAmount).toDouble()
 
         _state.update { currentState ->
             currentState.copy(
                 productsList = updatedProductsList,
                 orderList = updatedOrderList,
-                totalAmount = formatted
+                totalAmount = formattedAmount,
+                filteredList = updatedFilteredList
             )
         }
     }
+
 
     override fun onClickViewOrder() {
         _state.update {
             it.copy(
                 searchValue = "",
                 orderList = emptyList(),
+                filteredList = emptyList(),
                 currentCategory = "0",
-                totalAmount = 0.0
+                totalAmount = 0.0,
+                productsList = it.productsList.map { p -> p.copy(count = 0) }
             )
         }
     }

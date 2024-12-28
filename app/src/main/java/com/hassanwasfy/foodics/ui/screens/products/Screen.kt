@@ -1,6 +1,7 @@
 package com.hassanwasfy.foodics.ui.screens.products
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -19,10 +19,10 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -134,7 +134,19 @@ fun ScreenProductsContent(state: ProductsUiState, interaction: ProductsInterActi
             ) {
                 OutlinedTextField(
                     value = state.searchValue,
+                    colors = TextFieldDefaults.colors(
+                        unfocusedIndicatorColor = Color.Transparent,
+                        focusedIndicatorColor = Color.Transparent,
+                        focusedContainerColor = Color.Transparent,
+                        unfocusedContainerColor = Color.Transparent
+                    ),
                     modifier = Modifier
+                        .clip(RoundedCornerShape(CornerSize(Paddings.DP_8)))
+                        .border(
+                            Paddings.DP_1,
+                            Color.LightGray,
+                            RoundedCornerShape(CornerSize(Paddings.DP_8))
+                        )
                         .fillMaxWidth()
                         .height(Paddings.SEARCH_VIEW_HEIGHT),
                     singleLine = true,
@@ -212,7 +224,11 @@ fun ScreenProductsContent(state: ProductsUiState, interaction: ProductsInterActi
 
 
 
-            Box(modifier = Modifier.weight(1f)) {
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .background(Gray_Background)
+            ) {
 
                 FoodicsAnimation(state.filteredList.isEmpty()) {
                     FoodicsProductList(state.productsList) { id ->
