@@ -1,16 +1,33 @@
 [versions]
 agp = "8.6.1"
-kotlin = "1.9.0"
+gradle = "8.3.2"
+kotlin = "2.0.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+kotlinGradlePlugin = "2.0.20"
 lifecycleRuntimeKtx = "2.8.7"
-activityCompose = "1.8.0"
-composeBom = "2024.04.01"
+activityCompose = "1.9.3"
+composeBom = "2024.12.01"
+ktor = "3.0.2"
+koin_compiler = "1.1.0"
+koin-bom = "4.1.0-Beta1"
+ksp = "2.1.20-Beta1-1.0.29"
+serialize = "2.1.0"
+room_version = "2.5.2"
+coil_version = "3.0.4"
+coil_svg = "2.4.0"
+navigationRuntimeKtx = "2.8.5"
+navigationCompose = "2.8.5"
+json_serial = "1.7.3"
+kotlin_compose = "2.1.20-Beta1"
+material = "1.3.1"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -23,9 +40,32 @@ androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePlugin" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-client-content = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-serialize = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-compiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin_compiler" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin-bom" }
+koin-android-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-bom" }
+room-runtime = { module = "androidx.room:room-runtime",version.ref = "room_version" }
+room-compiler = { module = "androidx.room:room-compiler",version.ref = "room_version" }
+room-ktx = { module = "androidx.room:room-ktx" ,version.ref = "room_version"}
+coil-compose = { module = "io.coil-kt.coil3:coil-compose" ,version.ref = "coil_version"}
+coil-network = { module = "io.coil-kt.coil3:coil-network-okhttp" ,version.ref = "coil_version"}
+coil-svg = { module = "io.coil-kt:coil-svg" ,version.ref = "coil_svg"}
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+kotlin-serial = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "json_serial" }
+androidx-material3 = { module = "androidx.compose.material3:material3", version = "material" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-
+ksp-plugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-serialize = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialize" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin_compose" }
