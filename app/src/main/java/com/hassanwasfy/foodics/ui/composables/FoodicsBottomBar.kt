@@ -1,11 +1,16 @@
 package com.hassanwasfy.foodics.ui.composables
 
+import androidx.compose.foundation.background
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -25,13 +30,30 @@ fun FoodicsBottomBar(navController: NavController) {
     val currentDestination by navController.currentBackStackEntryAsState()
     val currentRoute = currentDestination?.destination?.route
 
-    NavigationBar {
+    NavigationBar(
+        containerColor = Color.White
+    ) {
         bottomNavItems.forEach { item ->
             NavigationBarItem(
+                colors = NavigationBarItemDefaults.colors(
+                    indicatorColor = Color.Transparent,
+                    selectedIconColor = Color.Black,
+                    selectedTextColor = Color.Black,
+                    unselectedIconColor = Color.LightGray,
+                    unselectedTextColor = Color.LightGray
+                ),
                 selected = currentRoute == item.route,
                 onClick = { navController.navigate(item.route) },
-                icon = { Icon(painterResource(item.icon), "") },
-                label = { Text(item.label) }
+                icon = {
+                    Icon(
+                        painter = painterResource(item.icon), ""
+                    )
+                },
+                label = {
+                    Text(
+                        item.label
+                    )
+                }
             )
         }
     }
