@@ -1,6 +1,5 @@
 package com.hassanwasfy.foodics.ui.composables
 
-import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,7 +8,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -27,19 +25,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
-import coil3.ImageLoader
 import coil3.compose.AsyncImage
-import coil3.request.crossfade
-import coil3.util.DebugLogger
 import com.hassanwasfy.foodics.R
 import com.hassanwasfy.foodics.ui.models.ui.ProductUi
-import com.hassanwasfy.foodics.ui.theme.Gray_Background
-import com.hassanwasfy.foodics.ui.theme.Primary_Color
 import com.hassanwasfy.foodics.ui.theme.Red_Circle
 import com.hassanwasfy.foodics.ui.util.Fonts
 import com.hassanwasfy.foodics.ui.util.Paddings
@@ -55,7 +46,13 @@ fun FoodicsProductList(productsList: List<ProductUi>, onClick: (id: String) -> U
         ),
         verticalArrangement = Arrangement.spacedBy(Paddings.DP_8),
         horizontalArrangement = Arrangement.spacedBy(Paddings.DP_8),
-        columns = GridCells.Fixed(2)
+        columns = GridCells.Fixed(
+            if (isTablet()) {
+                4
+            } else {
+                2
+            }
+        )
     ) {
         items(productsList, key = { it.id }) {
             Box(modifier = Modifier) {

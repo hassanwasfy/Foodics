@@ -111,6 +111,7 @@ The app contains 4 main screens:
 <img src="screenshots/Screenshot_20241228_081157.png" alt="Product List" width="200" />
 <img src="screenshots/Screenshot_20241228_081026.png" alt="Product List" width="200" />
 <img src="screenshots/Screenshot_20241228_081254.png" alt="Product List" width="200" />
+<img src="screenshots/Screenshot_20241228_084929.png" alt="Product List" width="600" />
 
 </div>
 
